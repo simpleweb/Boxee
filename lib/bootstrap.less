@@ -1,0 +1,54 @@
+/*!
+ * Bootstrap @VERSION
+ *
+ * Copyright 2011 Twitter, Inc
+ * Licensed under the Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ * Date: @DATE
+ */
+
+// CSS Reset
+@import "reset.less";
+
+// Core variables and mixins
+@import "variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "mixins.less";
+
+// Grid system and page structure
+@import "scaffolding.less";
+
+// Styled patterns and elements
+@import "type.less";
+@import "forms.less";
+@import "tables.less";
+@import "patterns.less";
+
+@baseColor:#49a;
+@SWRed:#b43335;
+
+body, html{
+	background-color:@SWRed;
+	background-image:url(../images/sw-logo-web-red.png);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center; 
+}
+
+.logo{
+	
+}
+	
+.boxee{
+	position:absolute;
+	top:12px;
+	left:12px;
+	width:100px;
+	height:100px;
+	background-color:#fff;
+    @shadow:2px 1px 7px rgba(0,0,0,.4);
+    .box-shadow(@shadow);
+	-webkit-transition:all .5s ease-in-out;
+
+}
