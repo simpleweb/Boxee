@@ -15,58 +15,102 @@
 
 			<script>
 			$(document).ready(function(){
-				boxee(10,6,5);
-			$(window).resize(function() {
-				boxee(10,6,5);
+				
+				var gridWidth = 6;
+				var gridHeight = 5;
+				var gutter = 10;
+			
+				
+				
+			<!--		boxee(gutter,gridWidth,gridHeight); -->
+				
+			boxeee('content',gutter,gridWidth,gridHeight, 3, 1, 6, 2);
+			boxeee('content1',gutter,gridWidth,gridHeight, 2, 1, 2, 1);
+			boxeee('content2',gutter,gridWidth,gridHeight, 2,3, 2, 1);
+			boxeee('content3',gutter,gridWidth,gridHeight, 2,5, 2, 1);
+			boxeee('content4',gutter,gridWidth,gridHeight, 2,7, 2, 1);
+			boxeee('bar1',gutter,gridWidth,gridHeight*3, 1, 6, 1, 1);
+			boxeee('bar2',gutter,gridWidth,gridHeight*3, 2, 6, 1, 1);
+			boxeee('bar3',gutter,gridWidth,gridHeight*3, 3, 6, 1, 1);	
+			boxeee('header',gutter,gridWidth,gridHeight, 1, 1, 5, 1);	
+
+			boxeee('butt1',gutter,gridWidth,gridHeight, 5, 1, 1, 1, true);			
+			boxeee('butt2',gutter,gridWidth,gridHeight, 5, 2, 1, 1, true);	
+			boxeee('butt3',gutter,gridWidth,gridHeight, 5, 3, 1, 1, true);	
+			boxeee('butt4',gutter,gridWidth,gridHeight, 5, 4, 1, 1, true);	
+			boxeee('butt5',gutter,gridWidth,gridHeight, 5, 5, 1, 1, true);	
+			boxeee('butt6',gutter,gridWidth,gridHeight, 5, 6, 1, 1, true);	
+					
+			  $(window).resize(function() {
+				boxeee('content',gutter,gridWidth,gridHeight, 3, 1,6, 2);
+				boxeee('content1',gutter,gridWidth,gridHeight, 2, 1, 2, 1);	
+				boxeee('content2',gutter,gridWidth,gridHeight, 2,3, 2, 1);
+				boxeee('content3',gutter,gridWidth,gridHeight, 2,5, 2, 1);
+				boxeee('content4',gutter,gridWidth,gridHeight, 2,7, 2, 1);
+
+				boxeee('bar1',gutter,gridWidth,gridHeight*3, 1, 6, 1, 1);
+				boxeee('bar2',gutter,gridWidth,gridHeight*3, 2, 6, 1, 1);
+				boxeee('bar3',gutter,gridWidth,gridHeight*3, 3, 6, 1, 1);
+ 				boxeee('header',gutter,gridWidth,gridHeight, 1, 1, 5, 1);
+				
+				boxeee('butt1',gutter,gridWidth,gridHeight, 5, 1, 1, 1, true);			
+				boxeee('butt2',gutter,gridWidth,gridHeight, 5, 2, 1, 1, true);	
+				boxeee('butt3',gutter,gridWidth,gridHeight, 5, 3, 1, 1,  true);	
+				boxeee('butt4',gutter,gridWidth,gridHeight, 5, 4, 1, 1, true);	
+				boxeee('butt5',gutter,gridWidth,gridHeight, 5, 5, 1, 1, true);	
+				boxeee('butt6',gutter,gridWidth,gridHeight, 5, 6, 1, 1, true);
 				});	
 				
+			$("#content3").click(function(){
+			  	boxeee('content3',gutter,gridWidth*2,gridHeight*2, 2,2, 10, 8);
+				 $("#content3").css('z-index', 99);
 			});
-  
-			function boxee(gutter, topCount, rightCount){
-	
-				 
-			 var newXPos = 10;
-			 var newYPos = 10;
+				
+			});
+ 
+			function boxeee(thing,gutter,gridWidth,gridHeight, top, left, width, height, square){	 
+
 				 
 			 var containerHeight = $(window).height()-gutter;
 			 var containerWidth = $(window).width()-gutter;
 				 
-			 var objWidth = (containerWidth/topCount)-gutter;
-			 var objHeight = (containerHeight/rightCount)-gutter;
+			 var objWidth = ((containerWidth/gridWidth)*width)-gutter;
+			 var objHeight = ((containerHeight/gridHeight)*height)-gutter;
+			 
+			 if (square){
+				 objHeight=objWidth;
+			 }
+			 
+			 var newXPos = ((left-1)*(containerWidth/gridWidth))+gutter;
+			 var newYPos = ((top-1)*(containerHeight/gridHeight))+gutter;
+			 
+			 
 				 
-				
+			$("#"+thing).css('top', newYPos);
+			$("#"+thing).css('left', newXPos);
+		  $("#"+thing).css('width', objWidth);
+		  $("#"+thing).css('height', objHeight);
+		  
+ 		 
+		  $("#"+thing+" p").css('font-size', objWidth/(width/height*10));
+		  $("#"+thing+" p").css('margin',  objWidth/(width/height*11));
+		  
+		  
+		  if (objWidth < 200){
+			  $("#"+thing+" p").css('font-size', 10);
+			  $("#"+thing+" p").css('margin',  6);
+		  	
+		  }
+		  
+		  
+		  $("#"+thing+" li").css('font-size', objWidth/(width/height*10));
+		  $("#"+thing+" a").css('font-size', objWidth/(width/height*10));
+		   $("#"+thing+" h1").css('font-size', objWidth/(width/height*2));
+		  $("#"+thing+" h1").css('margin',  objWidth/(width/height*11));
+		  $("#"+thing+" h3").css('font-size', objWidth/(width/height*6));
+		  $("#"+thing+" h3").css('margin',  objWidth/(width/height*5));
 			
-			$('.boxee').each(function(index) {
-				$(this).width(objWidth);
-				$(this).height(objHeight);
-				if (index+1 <= topCount-1){
-					newXPos += (objWidth + gutter);
-					$(this).css('top', newYPos);
-		   		 	$(this).css('left', newXPos);
-				}
-					
-				if (index+1 > topCount-1 && index+1 <= topCount+rightCount-2){
-					newYPos += (objHeight + gutter);
-					$(this).css('top', newYPos);
-		   		 	$(this).css('left', newXPos);
-				}
-					
-				if (index+1 > topCount+rightCount-2 && index+1 <= (topCount*2)+rightCount-3){
-					newXPos -= (objWidth + gutter);
-					$(this).css('top', newYPos);
-		   		 	$(this).css('left', newXPos);
-				}
-					
-				if (index+1 > (topCount*2)+rightCount-3 && index+1 <= (topCount*2)+(rightCount*2)-4){
-					newYPos -= (objHeight + gutter);
-					$(this).css('top', newYPos);
-		   		 	$(this).css('left', newXPos);
-				}
-					
-					
-					
-					
-			});
+			
 		};
 			</script>
 	
@@ -83,34 +127,52 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	<link href="//get.pictos.cc/fonts/596/1" rel="stylesheet" type="text/css">
   </head>
 
   <body>
+<div class="content" id="header">
+<h1>This is the title</h1>
+</div>
+   <div class="content btn butt" id="bar1">
+	<p class="icon-home">Option 1 </p>  
+	</div>
+    <div class="content btn butt" id="bar2">
+ 	<p>Option 2  </p> 
+ 	</div>	
+    <div class="content btn butt" id="bar3">
+ 	<p>Option 3 </p>  
+ 	</div>
+	
+<div id="slippy">
+<div class="content" id="content1">
 
+</div>
+<div class="content" id="content2">
 
-    <div class="container">
+</div>
 
-     <div class="boxee">box 1</div>
-	 <div class="boxee">box 2</div>
-	 <div class="boxee">box 3</div>
-	 <div class="boxee">box 4</div>
-	 <div class="boxee">box 5</div>
-	 <div class="boxee">box 6</div>
-	 <div class="boxee">box 7</div>
-	 <div class="boxee">box 8</div>
-	 <div class="boxee">box 9</div>
-	 <div class="boxee">box 10</div>
-	 <div class="boxee">box 11</div>
-	 
-     <div class="boxee">box 1</div>
-	 <div class="boxee">box 2</div>
-	 <div class="boxee">box 3</div>
-	 <div class="boxee">box 4</div>
-	 <div class="boxee">box 5</div>
-	 <div class="boxee">box 6</div>
-	 <div class="boxee">box 7</div>
+<div class="content" id="content3">
 
-    </div> <!-- /container -->
+</div>
+<div class="content" id="content4">
+	<h3>DJ Shadow</h3>    
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+</div>
 
+<div class="content" id="content">
+	<h3>DJ Shadow</h3>    
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+<ul>
+	<li id="butt1" class="butt content btn primary">Butt 1</li>
+	<li id="butt2"  class="butt content btn primary">Butt 2</li>
+	<li id="butt3"  class="butt content btn primary">Butt 3</li>
+	<li id="butt4"  class="butt content btn primary">Butt 4</li>
+	<li id="butt5"  class="butt content btn primary">Butt 5</li>
+	<li id="butt6"  class="butt content btn primary">Butt 6</li>	
+</ul>
   </body>
 </html>

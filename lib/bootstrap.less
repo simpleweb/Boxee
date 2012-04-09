@@ -25,11 +25,26 @@
 @import "tables.less";
 @import "patterns.less";
 
-@baseColor:#49a;
-@SWRed:#b43335;
+.butt{
+	padding:0;
+}
+.text-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-text-shadow: @shadow;
+     -moz-text-shadow: @shadow;
+          text-shadow: @shadow;
+}
+
+@SWRed:#456;
+
+
+@baseColor:#222;
+
+
+@inverseColor:#fff-@baseColor;
+@bgColor:@baseColor;
 
 body, html{
-	background-color:@SWRed;
+	background-color:@baseColor;
 	background-image:url(../images/sw-logo-web-red.png);
 	background-repeat:no-repeat;
 	background-attachment:fixed;
@@ -39,16 +54,40 @@ body, html{
 .logo{
 	
 }
-	
-.boxee{
-	position:absolute;
-	top:12px;
-	left:12px;
-	width:100px;
-	height:100px;
-	background-color:#fff;
-    @shadow:2px 1px 7px rgba(0,0,0,.4);
-    .box-shadow(@shadow);
-	-webkit-transition:all .5s ease-in-out;
 
+
+.content{
+    position: absolute;
+    -webkit-box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.4);
+    -webkit-transition: all 0.5s ease-in-out;
+    overflow: scroll;
+
+}
+.content p, .content h3, .content h1{
+	line-height:1.25em;
+	margin:1em;
+}
+.content img{
+	float:left;
+	height:auto;
+	width:50%;
+	margin:6px;
+}
+#content {
+  background-color: #fff;
+
+}
+#content1 {
+  background-color: #888;
+}
+#content2{
+	background-color:#699;
+}
+#content3{
+	background-color:#969;
+}
+#slippy{
+	overflow:hidden;
 }
